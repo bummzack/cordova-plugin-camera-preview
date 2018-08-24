@@ -196,12 +196,6 @@
     [cropFilter setValue:cropRect forKey:@"inputRectangle"];
     CIImage *croppedImage = [cropFilter outputImage];
 
-    //fix front mirroring
-    if (self.sessionManager.defaultCamera == AVCaptureDevicePositionFront) {
-      CGAffineTransform matrix = CGAffineTransformTranslate(CGAffineTransformMakeScale(-1, 1), 0, croppedImage.extent.size.height);
-      croppedImage = [croppedImage imageByApplyingTransform:matrix];
-    }
-
     self.latestFrame = croppedImage;
 
     CGFloat pointScale;
